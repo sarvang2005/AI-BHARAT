@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developed Bharat</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    /* Reset and base styles */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #ff9933 0%, #ffffff 50%, #138808 100%);
+      min-height: 100vh;
+      color: #222;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; border-radius: 10px; }
+
+    nav {
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #ff9933;
+      letter-spacing: 2px;
+      display: flex;
+      align-items: center;
+    }
+    .logo i { margin-right: 10px; }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    .nav-links a {
+      font-size: 1.1rem;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .nav-links a:hover { color: #138808; }
+    .menu-toggle {
+      display: none;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 1rem 2rem 1rem;
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+      min-height: 60vh;
+      position: relative;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.7);
+      z-index: 0;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      color: #138808;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      text-shadow: 1px 1px 8px #fff;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: #222;
+      margin-bottom: 2rem;
+    }
+    .cta-btn {
+      background: linear-gradient(90deg, #ff9933, #138808);
+      color: #fff;
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 4px 16px rgba(19,136,8,0.1);
+      transition: background 0.3s;
+    }
+    .cta-btn:hover { background: linear-gradient(90deg, #138808, #ff9933); }
+
+    section {
+      padding: 3rem 1rem 2rem 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-size: 2rem;
+      color: #ff9933;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      padding: 1.5rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 8px 24px rgba(19,136,8,0.08);
+    }
+    .card img {
+      width: 100%;
+      max-width: 220px;
+      margin-bottom: 1rem;
+      border-radius: 12px;
+    }
+    .card h3 {
+      color: #138808;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    .card p {
+      font-size: 1rem;
+      color: #444;
+      text-align: center;
+    }
+
+    footer {
+      background: #222;
+      color: #fff;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background: #fff;
+        display: none;
+        z-index: 999;
+      }
+      .nav-links.open { display: flex; }
+      .menu-toggle { display: block; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo"><i class="fa-solid fa-flag"></i>Developed Bharat</div>
+    <div class="menu-toggle" id="menu-toggle"><i class="fa fa-bars"></i></div>
+    <div class="nav-links" id="nav-links">
+      <a href="#about"><i class="fa fa-info-circle"></i> About</a>
+      <a href="#technologies"><i class="fa fa-microchip"></i> Technologies</a>
+      <a href="#defense"><i class="fa fa-shield-alt"></i> Defense</a>
+      <a href="#contact"><i class="fa fa-envelope"></i> Contact</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to Developed Bharat</h1>
+      <p>Celebrating India's technological advancements and defense innovations.</p>
+      <button class="cta-btn" onclick="document.getElementById('technologies').scrollIntoView({behavior:'smooth'})">Explore Technologies</button>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 class="section-title">About the Event</h2>
+    <div class="card-grid">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Event">
+        <h3>Innovate India 2025</h3>
+        <p>National showcase of India's breakthroughs in science, technology, and defense.</p>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Culture">
+        <h3>Celebrating Diversity</h3>
+        <p>Experience cultural fusion with futuristic vision—music, art, and science.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="technologies">
+    <h2 class="section-title">New Technologies</h2>
+    <div class="card-grid">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80" alt="AI">
+        <h3>Artificial Intelligence</h3>
+        <p>Smart cities, diagnostics, and agriculture powered by Indian AI.</p>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80" alt="Space">
+        <h3>Space Technology</h3>
+        <p>ISRO’s Chandrayaan and Gaganyaan lead India's global space presence.</p>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80" alt="Renewable">
+        <h3>Renewable Energy</h3>
+        <p>Solar, wind, and green hydrogen for a sustainable Bharat.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="defense">
+    <h2 class="section-title">Indian Defense System</h2>
+    <div class="card-grid">
+      <div class="card">
+        <img src="missile.png" alt="Missile">
+        <h3>Missile Technology</h3>
+        <p>Agni, Prithvi, and BrahMos built for strategic deterrence by DRDO.</p>
+      </div>
+      <div class="card">
+        <img src="navy.png" alt="Navy">
+        <h3>Indian Navy</h3>
+        <p>INS Vikrant and submarines enable India's blue-water strength.</p>
+      </div>
+      <div class="card">
+        <img src="air.png" alt="Air Force">
+        <h3>Air Force Power</h3>
+        <p>Tejas jets and surveillance tech secure Indian skies.</p>
+      </div>
+      <!-- New Cards Start Here -->
+      <div class="card">
+        <img src="tank.png" alt="Arjun MBT">
+        <h3>Arjun Battle Tank</h3>
+        <p>DRDO's Arjun MBT delivers power, precision, and indigenous design.</p>
+      </div>
+      <div class="card">
+        <img src="drdp.png" alt="DRDO UAV">
+        <h3>DRDO UAVs</h3>
+        <p>India's Rustom and Tapas drones enhance aerial surveillance and defense.</p>
+      </div>
+      <div class="card">
+        <img src="brahnos.png" alt="BrahMos">
+        <h3>BrahMos Missile</h3>
+        <p>World-class supersonic cruise missile developed with Russia.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">Contact Us</h2>
+    <form style="max-width: 480px; margin: 0 auto; background: #fff; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(19,136,8,0.08)">
+      <label for="name">Name</label><br>
+      <input type="text" id="name" name="name" required style="width: 100%; padding: 0.7rem; margin: 0.5rem 0 1rem 0; border-radius: 8px; border: 1px solid #ccc;"><br>
+      <label for="email">Email</label><br>
+      <input type="email" id="email" name="email" required style="width: 100%; padding: 0.7rem; margin: 0.5rem 0 1rem 0; border-radius: 8px; border: 1px solid #ccc;"><br>
+      <label for="message">Message</label><br>
+      <textarea id="message" name="message" rows="4" required style="width: 100%; padding: 0.7rem; border-radius: 8px; border: 1px solid #ccc;"></textarea><br>
+      <button type="submit" class="cta-btn" style="margin-top:1rem;">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    &copy; 2025 Developed Bharat | Made with <span style="color:#ff9933;">&#10084;</span> in India
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const section = document.querySelector(this.getAttribute('href'));
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth' });
+          navLinks.classList.remove('open');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
